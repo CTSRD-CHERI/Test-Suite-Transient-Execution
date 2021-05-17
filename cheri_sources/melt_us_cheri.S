@@ -1,4 +1,4 @@
-#include "../s_sources/hpm_macros.h"
+#include "../hpm_macros.h"
 
 // meltdown variant for CHERI
 
