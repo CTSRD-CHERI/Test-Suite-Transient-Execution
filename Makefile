@@ -14,11 +14,8 @@ CHERI_DUMP_FILES = $(patsubst %.S,$(BUILDDIR)/%.dump,$(CHERI_SOURCES))
 
 BUILDDIR = build
 
-#.PHONY: all
-#all: ; $(info $$var is [${RISCV_DUMP_FILES}])echo Hello world
-
 .PHONY: all
-all: $(BUILDDIR) riscv cheri
+all: riscv cheri
 
 build:
 	mkdir $@
@@ -26,17 +23,17 @@ build:
 	mkdir -p $@/cheri_sources
 
 .PHONY: riscv
-riscv: $(RISCV_DUMP_FILES)
+riscv: $(BUILDDIR) $(RISCV_DUMP_FILES)
 
 .PHONY: cheri
-cheri: $(CHERI_DUMP_FILES)
-
-#.SECONDARY:
-#$(BUILDDIR)/%.out: %.S 
-#	$(LLVM) $(LLVM_OPTS) $(RISCV_OPTS) $< -o $@
+cheri: $(BUILDDIR) $(CHERI_DUMP_FILES)
 
 .SECONDARY:
-$(BUILDDIR)/%.out: %.S 
+$(BUILDDIR)/riscv_sources/%.out: riscv_sources/%.S 
+	$(LLVM) $(LLVM_OPTS) $(RISCV_OPTS) $< -o $@
+
+.SECONDARY:
+$(BUILDDIR)/cheri_sources/%.out: cheri_sources/%.S 
 	$(LLVM) $(LLVM_OPTS) $(CHERI_OPTS) $< -o $@
 
 %.dump: %.out
