@@ -88,7 +88,7 @@ spec:
   addi a0, x0, 0xf
   jal ra, spec_funct
 
-  // flush cache again to evict
+  // flush cache in order to evict
   // value loaded for comparison
   jal ra, flush
 
@@ -108,7 +108,7 @@ spec:
   // read value of counter 3 and store it to s10
   HPM_M_READ_X (s10, 3)
 
-  // calls with parameters that should lead to
+  // calls with parameters that will lead to
   // speculative execution
   addi a0, x0, 0x20
   jal ra, spec_funct
@@ -156,15 +156,9 @@ idle_funct:
   nop
   .endr
 
-  // probe the entire cache
-  //jal ra, probe
 
 flush:
-  // flushes the entire caches
-  // we expect the CACHE_TEST configuration
-  // caches are 2 way and 8KB
-  // we only need to flush cash lines (64 bytes) and not double-words
-  // 8KB = 8192 bytes, we need to flush 8192/64=128 lines
+  // flushes 8 KiB of the cache
   lla t0, arr
   li t1, 8192
   add t0, t0, t1
