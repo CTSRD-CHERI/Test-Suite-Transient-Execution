@@ -13,23 +13,15 @@ SECTIONS
   . = ALIGN(0x1000);
   .text : { *(.text) }
   . = ALIGN(0x200);
-  .kernel_btb_s : { *(.kernel_btb_s) }
-  . = ALIGN(0x4000);
-  .sand0 : { *(.sand0) }
-  . = ALIGN(0x20000);
-  .sand1 : { *(.sand1) }
-  . = ALIGN(0x40000);
-  .sand2 : { *(.sand2) }
+  .spec_btb_cheri_s : { *(.spec_btb_cheri_s) }
   . = ALIGN(0x20000);
   .kernel : { *(.kernel) }
   . = ALIGN(0x8000000);
-  .kernel_btb_u : { *(.kernel_btb_u) }
+  .spec_btb_cheri_u : { *(.spec_btb_cheri_u) }
   . = ALIGN(0x40000);
   .user : { *(.user) }
   . = ALIGN(0x20000);
   .acode : { *(.acode) }
-  . = ALIGN(0x20000);
-  .auipccode : { *(.auipccode) }
   . = ALIGN(0x1000);
   .tohost : { *(.tohost) }
   . = ALIGN(0x1000);

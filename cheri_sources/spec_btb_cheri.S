@@ -234,7 +234,6 @@ probe_loop:
     HPM_CAP_TEST(s10, s11,261)
 
 
-
 flush:
     // flush entire cache
     
@@ -266,7 +265,7 @@ flush_loop:
  * running in S priviledge mode
  */
 
-.section .kernel_btb_s , "ax"
+.section .spec_btb_cheri_s , "ax"
 
 kernel_funct:
     // jump to start function
@@ -317,7 +316,7 @@ kernel_funct_cont:
  * running in U priviledge mode
  */
 
-.section .kernel_btb_u , "ax"
+.section .spec_btb_cheri_u , "ax"
 
 user_funct:
     // done this way in order to always have the same
