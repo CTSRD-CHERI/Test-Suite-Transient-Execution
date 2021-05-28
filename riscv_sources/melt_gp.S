@@ -40,10 +40,7 @@ Meltdown-GP
 
 This variant of Meltdown attempts to transiently read out the
 content of an arbitrary M privilege mode register, which is
-mcause in this example. Please note that this version does not
-work yet. I assume that this will not be possible on Toooba
-as the rights are checked before any side effects could
-take place.
+mcause in this example.
 
 steps:
 1. change to U mode

@@ -41,7 +41,7 @@
 Meltdown-US
 
 This is the original meltdown attack. The adversary
-runs in user mode and accesses a supervisor mode
+runs in user mode and accesses a supervisor-only
 page. This access will lead to fault being raised,
 but in the meantime a transient execution sequence
 will leak the secret through a side channel.

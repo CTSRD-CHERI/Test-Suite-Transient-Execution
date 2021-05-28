@@ -45,10 +45,6 @@ data.
 
 load to: 0x0000000080010400
 
-HPM measurements
-
-Loads microachitecturally : 5
-Loads architecturally:      3
 */
 
 spec_stl:
@@ -103,7 +99,7 @@ probe_loop:
     // if successful, we expect 5 loads to have happened
     // 3 architectural loads in store_funct
     // two transient loads for the latter two loads in
-    // store_funct
+    // store_funct that have to be re-executed
     HPM_TEST(t1, t2, 5)
 
 store_funct:

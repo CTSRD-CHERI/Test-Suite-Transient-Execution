@@ -41,9 +41,9 @@ Spectre-RSB
 It calls a function that fetches its return
 address from the stack and jumps there. Therefore,
 the Return Stack Buffer (RSB) does not hold the same
-value as the stack. The microprocessor will predict
+value as the software stack. The microprocessor will predict
 the jump going back to ras_change_frame, but the
-actual location is target_function.
+actual location should be target_function.
 
 load to: 0x0000000080020480
 */
@@ -69,7 +69,7 @@ spec_rsb:
     jal ra, change_funct
 
     // to be executed speculatively
-    // leak value in t2
+    // leak value stored in t2
     add t2, s2, t2
     ld t5, 0(t2)
 
