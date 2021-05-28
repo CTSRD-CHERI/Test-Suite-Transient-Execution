@@ -42,9 +42,9 @@ Spectre-RSB-CHERI
 It calls a function that fetches its return
 address from the stack and jumps there. Therefore,
 the Return Stack Buffer (RSB) does not hold the same
-value as the stack. Toooba will predict a jump back
-to the user code, but actually a jump inside the
-kernel code should have been taken.
+value as the software stack. The processor will predict
+a jump back to the user code, but actually a jump inside
+the kernel code should have been taken.
 
 In simulation:
 1st load: 0x0000000080040400
@@ -218,7 +218,7 @@ probe_loop:
     // the latter one leaks the secret. HOWEVER
     // the first one will be served by a store buffer
     // and therefore not go to the L1 D Cache as confirmed
-    // by the simulation output
+    // by the simulation output in Toooba
     HPM_CAP_TEST(s10, s11, 4099)
 
 /*

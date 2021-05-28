@@ -42,7 +42,6 @@ The goal of the attack is to speculatively jump from
 S mode to U mode. This gives an attacker the full
 register state of the code operating in S mode. In
 this example, the user code leaks private to M mode.
-This attack is similar to the sandbox attack.
 
 In simulation:
 1st load: 0x0000000080060000
@@ -228,9 +227,10 @@ probe_loop:
     // two architectural loads in user_funct_cont
     // one architectural load in kernel_funct_start
     // two transient loads in user_funct_cont, where
-    // the latter one leaks the secret (the first transient
-    // load is not counted because it is served from a store
-    // buffer)
+    // NOTE: the latter load leaks the secret (the
+    // first transient load is not counted because
+    // in Toooba it is served from a store buffer as
+    // confirmed by the simulation)
     HPM_CAP_TEST(s10, s11,261)
 
 

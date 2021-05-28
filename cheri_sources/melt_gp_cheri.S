@@ -39,10 +39,7 @@
 Meltdown-GP CHERI Variant
 
 This variant of Meltdown attempts to transiently read out the
-content of the SCR mscratch. Please note that this version does not
-work yet. I assume that this will not be possible on Toooba
-as the rights are checked before any side effects could
-take place.
+content of the SCR mscratch.
 
 steps:
 1. init mscratchc

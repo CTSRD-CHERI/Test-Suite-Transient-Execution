@@ -33,22 +33,18 @@
 
 #include "../hpm_macros.h"
 
-// meltdown variant for CHERI
-
 .text
 /*
 Meltdown-US-CHERI
 
 The goal of the attack is to read memory out-of-bounds
-while using capabilities. This tests whether Toooba
-does checks in the correct place in the pipeline. If
-Toooba did not do so, the transient instruction sequence
+while using capabilities. This tests whether a CHERI microarchitecture
+checks in the correct place in the pipeline. If
+the implementation did not do so, the transient instruction sequence
 following the faulting load could leak the secret value.
 
 Similar attacks could be conducted for capability
 permissions, etc.
-
-This attack is *NOT* possible on Toooba!
 
 steps:
 
@@ -137,8 +133,8 @@ melt_us_cheri:
   cincoffset cs1, cs1, t1
 
 attack_funct:
-  // remember that capability is in cs0
-  // and bounds are [mem, mem + 16*8[
+  // capability is in cs0
+  // bounds are [mem, mem + 16*8[
 
   // set cs0 offset out of bounds
   // we want to access a value in the memory
@@ -146,8 +142,7 @@ attack_funct:
   cincoffsetimm cs0, cs0, 512
 
   // load will miss all caches
-  // this will delay the exception being raised, but
-  // this does not make the attack work on Toooba
+  // this will delay the exception being raised
   cld t3, 0(cs1)
 
   // load out of bounds

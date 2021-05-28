@@ -42,8 +42,7 @@ It trains the history of a branch predictor such
 that two loads are executed speculatively even
 if the branch should not have been taken. This
 is the Pattern History Table(PHT) variant of
-Spectre, also known as Spectre v1. This is the
-CHERI variant of s_sources/spec_pht.S
+Spectre, also known as Spectre v1.
 
 In simulation:
 1st load: 0x0000000080001200
@@ -209,15 +208,6 @@ spec:
     cincoffset ct2, cs1, t1
     csd t1, 0(ct2)
 
-    // this load needs to be finished
-    // before continuing
-    //fence rw, rw
-
-    // prepare hardware performance monitoring
-    // do counting of load request sent by the CPU
-    //HPM_SELECT_EVENT(3, 0x30)
-    // read value of counter 3 and store it to s10
-    //HPM_M_READ_X (s10, 3)
 
     // calls with parameters that should lead to
     // speculative execution
@@ -259,8 +249,8 @@ probe_loop:
     // one transient load in spec_funct, which
     // leaks the secret
     // NOTE: the first transient load is served
-    // by a store buffer as confirmed by the
-    // simulation trace
+    // by a store buffer in Toooba as confirmed
+    // by the simulation trace
     HPM_CAP_TEST(s10, s11, 2)
 
 infinite_loop:
