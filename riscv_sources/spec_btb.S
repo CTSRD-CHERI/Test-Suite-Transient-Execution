@@ -138,7 +138,7 @@ probe_loop:
 attack_code:
     j attack_code_start
 
-    .rept 0x130
+    .rept 0x23f
     nop
     .endr
 
