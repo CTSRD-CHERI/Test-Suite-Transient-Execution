@@ -84,6 +84,9 @@ change_to_U:
     // which is a jump to access_m_reg
     mret
 
+// align on PC divisible by four
+.align 4
+
 trap_handler:
     // read value of counter 3 and store it to s11
     HPM_M_READ_X (s11, 3)
